@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{23b453c7-f41b-4d1e-a987-195749b4cade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{63e6aef3-87e3-466b-b79c-f29f278dac5b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\DevicePool.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GuidToString.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ColorTransform.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Device.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cdi\cdi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DevicePool.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuidToString.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ColorTransform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Device.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Buffer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Macros.inl">
+      <Filter>src</Filter>
+    </None>
+    <None Include="src\ScopeGuard.inl">
+      <Filter>src</Filter>
+    </None>
+  </ItemGroup>
+</Project>
