@@ -48,7 +48,6 @@ class Device
 {
 public:
     Device();
-
     ~Device();
 
     bool init(
@@ -57,19 +56,12 @@ public:
         const uint32_t& height,
         const GUID& mf_format,
         const OutputFormat& output_format);
-
     void sample();
-
     const void* lock(size_t& bytes);
-
     void unlock();
-
     uint32_t width() const;
-
     uint32_t height() const;
-
     OutputFormat encoding() const;
-
     size_t size() const;
 
 private:

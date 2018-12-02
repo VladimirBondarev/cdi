@@ -52,15 +52,11 @@ public:
     };
 
     DevicePool();
-
     ~DevicePool();
 
     uint32_t get_count() const;
-
     IMFActivate* get_device(const uint32_t& device_index);
-
     std::vector<std::wstring> get_device_names();
-
     std::vector<Format> get_formats(const uint32_t& device_index);
 
 private:

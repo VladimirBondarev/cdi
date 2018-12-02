@@ -46,15 +46,11 @@ class ColorTransform
 
 public:
     ColorTransform();
-
     ~ColorTransform();
 
     bool init(IMFMediaType* input, const GUID& mf_video_format);
-
     void transform(IMFSample* sample);
-
     const void* lock(size_t& bytes);
-
     void unlock();
 
 private:

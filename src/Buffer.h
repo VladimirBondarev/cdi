@@ -31,51 +31,41 @@
 */
 
 #pragma once
+
+#define NOMINMAX
+#include "cdi/cdi.h"
+
 #include <cstdint>
-#include <vector>
-#include <string>
 #include <memory>
+
 
 namespace cdi
 {
 
-enum OutputFormat
-{
-    UNKNOWN,
-    I420,
-    RGB24,
-    RGBA32,
-};
+class DevicePool;
+class Device;
 
-struct Resolution
-{
-    Resolution() : width(0), height(0) {}
-    Resolution(const uint32_t& width, const uint32_t& height): width(width), height(height) {}
-    uint32_t width;
-    uint32_t height;
-};
-
-class IBuffer
+class Buffer : public IBuffer
 {
 public:
-    virtual ~IBuffer() {}
-    virtual uint32_t width() const = 0;
-    virtual uint32_t height() const = 0;
-    virtual OutputFormat encoding() const = 0;
-    virtual size_t size() const = 0;
-    virtual const void* lock() = 0;
-    virtual void unlock() = 0;
+    Buffer();
+    ~Buffer();
+
+    bool init(
+        const uint32_t& device_index,
+        const uint32_t& width,
+        const uint32_t& height,
+        const OutputFormat& encoding);
+    uint32_t width() const final;
+    uint32_t height() const final;
+    OutputFormat encoding() const final;
+    size_t size() const final;
+    const void* lock() final;
+    void unlock() final;
+
+private:
+    std::unique_ptr<DevicePool> m_pool;
+    std::unique_ptr<Device> m_device;
 };
-
-std::vector<std::wstring> list_devices();
-
-std::vector<Resolution> get_resolutions(const uint32_t& device_index);
-
-// Will select closest available resolution
-std::unique_ptr<IBuffer> open_device(
-    const uint32_t& device_index,
-    const uint32_t& width,
-    const uint32_t& height,
-    const OutputFormat& encoding);
 
 }

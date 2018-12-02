@@ -127,7 +127,7 @@ const char* GuidToString(const GUID& guid)
     IF_EQUAL_RETURN(guid, MFMediaType_FileTransfer);
 
     IF_EQUAL_RETURN(guid, MFVideoFormat_AI44); //     FCC('AI44')
-    IF_EQUAL_RETURN(guid, MFVideoFormat_ARGB32); //   D3DFMT_A8R8G8B8 
+    IF_EQUAL_RETURN(guid, MFVideoFormat_ARGB32); //   D3DFMT_A8R8G8B8
     IF_EQUAL_RETURN(guid, MFVideoFormat_AYUV); //     FCC('AYUV')
     IF_EQUAL_RETURN(guid, MFVideoFormat_DV25); //     FCC('dv25')
     IF_EQUAL_RETURN(guid, MFVideoFormat_DV50); //     FCC('dv50')

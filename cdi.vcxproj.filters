@@ -24,6 +24,9 @@
     <ClInclude Include="include\cdi\cdi.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="src\Buffer.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DevicePool.cpp">
@@ -39,6 +42,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Buffer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cdi.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

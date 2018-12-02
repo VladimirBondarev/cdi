@@ -31,51 +31,69 @@
 */
 
 #pragma once
-#include <cstdint>
-#include <vector>
-#include <string>
-#include <memory>
+
+#define NOMINMAX
+#include "cdi/cdi.h"
+#include "Buffer.h"
+#include "DevicePool.h"
+
+#include <map>
+
 
 namespace cdi
 {
 
-enum OutputFormat
+std::vector<std::wstring> list_devices()
 {
-    UNKNOWN,
-    I420,
-    RGB24,
-    RGBA32,
+    DevicePool devices;
+    return devices.get_device_names();
+}
+
+struct res_cmp
+{
+    bool operator() (const Resolution& l, const Resolution& r) const
+    {
+        return (l.width * l.height) < (r.width * r.height);
+    }
 };
 
-struct Resolution
+std::vector<Resolution> get_resolutions(const uint32_t& device_index)
 {
-    Resolution() : width(0), height(0) {}
-    Resolution(const uint32_t& width, const uint32_t& height): width(width), height(height) {}
-    uint32_t width;
-    uint32_t height;
-};
+    DevicePool devices;
 
-class IBuffer
-{
-public:
-    virtual ~IBuffer() {}
-    virtual uint32_t width() const = 0;
-    virtual uint32_t height() const = 0;
-    virtual OutputFormat encoding() const = 0;
-    virtual size_t size() const = 0;
-    virtual const void* lock() = 0;
-    virtual void unlock() = 0;
-};
+    std::map<Resolution, uint32_t, res_cmp> resolution_map;
+    for (const DevicePool::Format& fmt : devices.get_formats(device_index))
+    {
+        resolution_map[Resolution(fmt.width, fmt.height)]++;
+    }
 
-std::vector<std::wstring> list_devices();
+    std::vector<Resolution> resolutions;
+    for(const auto& kv : resolution_map)
+    {
+        resolutions.push_back(kv.first);
+    }
 
-std::vector<Resolution> get_resolutions(const uint32_t& device_index);
+    return resolutions;
+}
 
-// Will select closest available resolution
 std::unique_ptr<IBuffer> open_device(
     const uint32_t& device_index,
     const uint32_t& width,
     const uint32_t& height,
-    const OutputFormat& encoding);
+    const OutputFormat& encoding)
+{
+    std::unique_ptr<Buffer> buffer;
+
+    if(encoding != OutputFormat::UNKNOWN)
+    {
+        buffer = std::make_unique<Buffer>();
+        if(!buffer->init(device_index, width, height, encoding))
+        {
+            buffer.reset();
+        }
+    }
+
+    return std::move(buffer);
+}
 
 }
