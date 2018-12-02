@@ -7,9 +7,6 @@
       <AdditionalDependencies>cdi.lib;winmm.lib;mf.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;wmcodecdspuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(CDI_LIB_PATH)\lib\x64_v141\$(configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
     <ClCompile>
       <AdditionalIncludeDirectories>$(CDI_LIB_PATH)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
