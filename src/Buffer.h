@@ -55,10 +55,10 @@ public:
         const uint32_t& device_index,
         const uint32_t& width,
         const uint32_t& height,
-        const OutputFormat& encoding);
+        const Encoding& encoding);
     uint32_t width() const final;
     uint32_t height() const final;
-    OutputFormat encoding() const final;
+    Encoding encoding() const final;
     size_t size() const final;
     const void* lock() final;
     void unlock() final;

@@ -39,7 +39,7 @@
 namespace cdi
 {
 
-enum OutputFormat
+enum class Encoding
 {
     UNKNOWN,
     I420,
@@ -61,7 +61,7 @@ public:
     virtual ~IBuffer() {}
     virtual uint32_t width() const = 0;
     virtual uint32_t height() const = 0;
-    virtual OutputFormat encoding() const = 0;
+    virtual Encoding encoding() const = 0;
     virtual size_t size() const = 0;
     virtual const void* lock() = 0;
     virtual void unlock() = 0;
@@ -76,6 +76,6 @@ std::unique_ptr<IBuffer> open_device(
     const uint32_t& device_index,
     const uint32_t& width,
     const uint32_t& height,
-    const OutputFormat& encoding);
+    const Encoding& encoding);
 
 }

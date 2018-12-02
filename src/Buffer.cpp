@@ -53,7 +53,7 @@ bool Buffer::init(
     const uint32_t& device_index,
     const uint32_t& width,
     const uint32_t& height,
-    const OutputFormat& encoding)
+    const Encoding& encoding)
 {
     // For now just pick first available device
     if(m_pool->get_count() > device_index)
@@ -113,7 +113,7 @@ uint32_t Buffer::height() const
     return m_device->height();
 }
 
-OutputFormat Buffer::encoding() const
+Encoding Buffer::encoding() const
 {
     return m_device->encoding();
 }

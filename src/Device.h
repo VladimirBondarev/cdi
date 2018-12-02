@@ -55,13 +55,13 @@ public:
         const uint32_t& width,
         const uint32_t& height,
         const GUID& mf_format,
-        const OutputFormat& output_format);
+        const Encoding& output_format);
     void sample();
     const void* lock(size_t& bytes);
     void unlock();
     uint32_t width() const;
     uint32_t height() const;
-    OutputFormat encoding() const;
+    Encoding encoding() const;
     size_t size() const;
 
 private:
@@ -77,7 +77,7 @@ private:
     IMFMediaType* m_device_output;
     uint32_t m_width;
     uint32_t m_height;
-    OutputFormat m_output_format;
+    Encoding m_output_format;
     size_t m_size;
 
     // Color space transformation

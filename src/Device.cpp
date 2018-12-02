@@ -49,7 +49,7 @@ Device::Device()
     , m_device_output(nullptr)
     , m_width(0)
     , m_height(0)
-    , m_output_format(OutputFormat::UNKNOWN)
+    , m_output_format(Encoding::UNKNOWN)
     , m_size(0)
 {
 }
@@ -64,7 +64,7 @@ bool Device::init(
     const uint32_t& width,
     const uint32_t& height,
     const GUID& mf_format,
-    const OutputFormat& output_format)
+    const Encoding& output_format)
 {
     cdi::util::ScopeGuard uninit_guard;
     uninit_guard += [this]() { uninit(); };
@@ -114,15 +114,15 @@ bool Device::init(
     GUID mf_video_format = MFVideoFormat_I420;
     switch (output_format)
     {
-    case OutputFormat::I420:
+    case Encoding::I420:
         mf_video_format = MFVideoFormat_I420;
         m_size = m_width * m_height + (m_width * m_height >> 2) * 2;
         break;
-    case OutputFormat::RGB24:
+    case Encoding::RGB24:
         mf_video_format = MFVideoFormat_RGB24;
         m_size = m_width * m_height * 3;
         break;
-    case OutputFormat::RGBA32:
+    case Encoding::RGBA32:
         mf_video_format = MFVideoFormat_RGB32;
         m_size = m_width * m_height * 4;
         break;
@@ -209,7 +209,7 @@ uint32_t Device::height() const
     return m_height;
 }
 
-OutputFormat Device::encoding() const
+Encoding Device::encoding() const
 {
     return m_output_format;
 }

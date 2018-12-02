@@ -80,11 +80,11 @@ std::unique_ptr<IBuffer> open_device(
     const uint32_t& device_index,
     const uint32_t& width,
     const uint32_t& height,
-    const OutputFormat& encoding)
+    const Encoding& encoding)
 {
     std::unique_ptr<Buffer> buffer;
 
-    if(encoding != OutputFormat::UNKNOWN)
+    if(encoding != Encoding::UNKNOWN)
     {
         buffer = std::make_unique<Buffer>();
         if(!buffer->init(device_index, width, height, encoding))
