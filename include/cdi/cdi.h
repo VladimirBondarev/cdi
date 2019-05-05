@@ -36,6 +36,8 @@
 #include <string>
 #include <memory>
 
+#define CDIEXPORT __declspec(dllexport)
+
 namespace cdi
 {
 
@@ -67,12 +69,12 @@ public:
     virtual void unlock() = 0;
 };
 
-std::vector<std::wstring> list_devices();
+CDIEXPORT std::vector<std::wstring> list_devices();
 
-std::vector<Resolution> get_resolutions(const uint32_t& device_index);
+CDIEXPORT std::vector<Resolution> get_resolutions(const uint32_t& device_index);
 
 // Will select closest available resolution
-std::unique_ptr<IBuffer> open_device(
+CDIEXPORT std::unique_ptr<IBuffer> open_device(
     const uint32_t& device_index,
     const uint32_t& width,
     const uint32_t& height,
